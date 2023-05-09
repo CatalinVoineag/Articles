@@ -28,3 +28,7 @@ rails s
 - This looks for a view called `create.turbo_stream.erb` and in this view we can tell rails what exactly to update.
 - In our case we want to target the ["likes_#{article_id}"](https://github.com/CatalinVoineag/Articles/blob/6aa171aa50e544ad647692e503cd0830d9e0c780/app/views/likes/create.turbo_stream.erb#L1) html element and re-render the content inside that div with the updated content. 
 - This allows us to update every article's like counter
+
+
+## Things to note
+- The app doesn't really handle the case when the API request is failing, this can be implemented with a rescue page. Happy to discuss further.
