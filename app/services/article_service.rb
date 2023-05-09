@@ -3,6 +3,12 @@ class ArticleService
 
   def get
     parsed_response.map do |element|
+      like = Like.find_by(used_by: "Article", used_by_id: element.fetch("id"))
+
+      if like
+        element.merge!(likes: like.counter)
+      end
+
       Article.new(element)
     end
   end

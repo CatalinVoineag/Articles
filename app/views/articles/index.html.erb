@@ -1,8 +1,28 @@
 <h1>Articles</h1>
 
-<ul>
-  <%= @articles.map do |article| %>
-    <li><%= article.title %></li>
-    <li><%= image_tag(article.medium_image) %></li>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<table>
+  <tr>
+    <th>Article</th>
+    <th>Image</th>
+    <th>Likes</th>
+    <th>Action</th>
+  </tr>
+  <% @articles.each do |article| %>
+    <tr id=<%= "article_#{article.id}" %>>
+      <td><%= article.title %></td>
+      <td><%= image_tag(article.small_image) %></td>
+      <td>
+        <%= render partial: "likes/like",
+          locals: { likes: article.likes, article_id: article.id }
+        %>
+      </td>
+      <td><%= button_to "Like", article_like_path(article.id) %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
